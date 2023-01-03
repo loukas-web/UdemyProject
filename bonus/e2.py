@@ -1,5 +1,6 @@
 import csv
 from matplotlib import pyplot as plt
+from datetime import datetime
 
 stats = {}
 lst = []
@@ -20,5 +21,18 @@ for item in lst:
 x = list(stats.keys())
 y = list(stats.values())
 
+time_str = str(data[1000][5][11:-6])
+print(time_str)
+print(type(time_str))
+time_object = datetime.strptime(time_str, '%H:%M:%S').time()
+print(time_object)
+print(type(time_object))
+date_str = str(data[1000][5][:10])
+print(date_str)
+date_object = datetime.strptime(date_str, '%Y-%m-%d').date()
+print(date_object)
+print(type(date_object))
+
 plt.bar(x, y)
 plt.show()
+
