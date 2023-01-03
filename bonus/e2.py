@@ -1,10 +1,24 @@
 import csv
+from matplotlib import pyplot as plt
 
-with open("weather.csv", "r") as file:
+stats = {}
+lst = []
+
+with open("report.csv", "r") as file:
     data = list(csv.reader(file))
 
-print(data[1:])
+for i in data[1:]:
+    lst.append([i[2], int(i[0])])
 
-a, b = zip(*data[1:])
+lst.sort()
+for item in lst:
+    if item[0] in stats:
+        stats[item[0]] += item[1]
+    else:
+        stats[item[0]] = item[1]
 
-print(a, b)
+x = list(stats.keys())
+y = list(stats.values())
+
+plt.bar(x, y)
+plt.show()
